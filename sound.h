@@ -1,7 +1,8 @@
 //constants definiton
+//#define DEBUG
 #define RATE 16000 //samples per second
 //#define DUR 5
-#define CMD "arecord -r16000 -c1 -f S16_LE -d5 test.wav"
+#define CMD "arecord -r16000 -c1 -f S16_LE -d1 test.wav"
 
 //data structures
 struct WAVHDR{
@@ -22,6 +23,6 @@ struct WAVHDR{
 	int Subchunk2Size;//
 };
 //function declaration
-	void displayWAVHDR(struct WAVHDR);
+	void displayWAVHDR(struct WAVHDR h);
 //	void showID(char *, char *);
 	void displayWAVDATA(short []);
