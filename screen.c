@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 // for operating with screen
 #include<stdio.h>
+=======
+#include <stdio.h>
+>>>>>>> 6fd3a5368d14aec091b302130b11b2b1c5f97541
 #include "screen.h"
 void barChart(int a[])
 {
