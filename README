@@ -1,0 +1,137 @@
+# this is the first version
+This project is to run a Raspberry PI as an audio device. The device is able to do 2 functions: as a sound collector and as a test-tone generator.
+
+Table of Content
+	1. Configuration Instructions
+	2. Installation Instructions
+	3. Opertating Instructions
+	4. File list (Manifest)
+	5. Copyright / Copyleft
+	6. Contract Information
+	7. Credits and Acknowledgements
+	
+-----------------------------
+
+1. Configuation Instructions
+
+The application is running on a Raspberry Pi 3 model B. This Pi should come with a USB sound card, a network connection, a microphone.
+
+-----------------------------
+
+1.1.a Configure USB sound card as default audio device
+
+.Basically, RPi onboard sound card does not have microphone interface, so we need to change the default audio device to be USB sound card. 
+.Boot up RPi, and apply the USB sound card. To ensure your USB sound card is mounted, you can use “lsusb” command. 
+.Use “sudo nano /etc/asound.conf” command and put following content to the file:
+
+pcm.!default {
+  type plug
+  slave {
+    pcm "hw:1,0"
+  }
+}
+ctl.!default {
+    type hw
+    card 1
+}
+
+.Go to your home directory. Use “nano .asoundrc” command and put the same content to the file.
+.Run “alsamixer” you should be able to see that USB sound card is the default audio device. For a more sensitive sound detection, it is better to maximize the volume of “Mic”.
+
+-----------------------------
+
+1.1.b Software Configuration
+
+.The newest version of Raspbian (a.k.a. Jessie) comes with a new version of alsa-utils (1.0.28), which has a bug while recording. To fix this problem, we have to downgrade alsa-util to an earlier version (1.0.25).
+.To downgrade alsa-ultis, use “sudo nano /etc/apt/sources.list” command and add the last line.
+.Run “sudo apt-get update”
+.Run “sudo aptitude versions alsa-utils” to check if version 1.0.25 of alsa-util is available
+.Run “sudo apt-get install alsa-utils=1.0.25-4” to downgrade
+.Reboot (if necessary)
+.Run “arecord -r44100 -c1 -f S16_LE -d5 test.wav” to test that your microphone is working. You should see a “test.wav” file in the current folder.
+.Put earphone on the USB sound card. Run “aplay test.wav” to check that your recording is okay.
+
+-----------------------------
+
+1.2 Install Libcurl library
+
+Here are instruction to install libcurl library:
+
+.Firstly, use command "ls /usr/include/curl" or "ls /usr/include/arm-linux-gnueabihf/curl" to identify that libcurl library is installed.
+.If the folder does not exist, then running “sudo apt-get update” to update the application list.
+.Run “sudo apt-get install libcurl3” to install the libcurl3.
+.Run “sudo apt-get install libcurl4-openssl-dev” to install the development API of libcurl4.
+
+-----------------------------
+
+2. Installation Instructions
+.Insert the SD card - install Raspbian OS via website "https://www.raspberrypi.org/downloads/noobs/"
+.Download "Noobs" image and ZIP file
+.If this is the first time bootin, plug in your keyboard, mouse and monitor cable. Then, you disable a display with RPi
+because it will be more convinient and you do not use it in most cases. Furthermore, you also need to know its IP address 
+when using RPi remotely. For more information about NOOBS setup, finding at: https://www.raspberrypi.org/help/noobs-setup/2/
+.Disassemble keyboard, mouse and monitor cable and plug them back in your computer.
+.Insert USB sound card and microphone to the Raspberry Pi and connect RPi to a Internet domain by the RJ45 cable. 
+.Connect to power supply by Micro USB to USB cable. 	
+.Using IP address sent by email to connect to the terminal.
+
+-----------------------------
+
+3. Operating Instructions
+
+.Open the PUTTY terminal and logging in your IP address.
+	login as: pi 
+	password: "enter your password"
+.Use "cd appdev1/ " command to access to "appdev" folder where all the source code files are put in.
+.Here are commands to get access to those file:
+	+"mkdir": Make a new folder
+	+ "ls -l": show the files of current folder in details 
+	+"cd..": Change to parent folder
+	+"cd $HOME": Change to the root folder of current user
+	+"rm": Delete a file or a number of files/folders
+	+"scp": Copy files from one host to another host
+	For more information, finding at: http://www.circuitbasics.com/useful-raspberry-pi-commands/
+.Use "make" command to compilling program
+.Use "./sound.out" command to run program
+.Using the microphone to sense the movement and the variation of the sound movement and find how many peaks the audio device reaches.
+
+-----------------------------
+
+4. File list(Manifest)
+
+The project contains following files: 
+
+--README : this file (information abut other files)
+--makefile : the makefile of this project 
+--sound.c : the module containing functions about sound processing including sensing sound through microphone and calculating for dB as well as finding number of peaks in  .wav file 
+--sound.h : the header of sound.c 
+--screen.c : the module containing functions about screen control and movement and bar chart display.
+--screen.h : the header of screen.c 
+--comm.c : the communication module using libcurl by sending data to calculate 1 second of sound samples into 8-pieces of slow decibel(ISO standard).
+--comm.h : the header file of comm.c 
+--main.c : contains main() function 
+--curltest.c : data transfer from or to a server, using common Internet protocol.
+--sound.php : the server page to receive data
+
+-----------------------------
+
+5. Copyleft
+
+.This project is cooperated with an instructor: Mr.Gao Chao from Vaasa University of Applied Sciences.
+.I use Raspberry Pi 3 model B which is a device of Vaasa University of Applied Sciences.
+.All the source code files are free to use and distribute!
+
+-----------------------------
+
+6. Contract Information
+
+Duong Minh Ha / Information Technology
+Vaasa University of Applied Sciences
+Email: nhannguyen290520@gmail.com
+
+-----------------------------
+
+7. Credits and Acknowledgements
+
+I would like to express my special thanks of gratitude to Mr. Gao Chao for great support my first project, I have learned a lot
+about the format as well as concepts development for a project. This is a premise for me to make other projects in the future.

@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <math.h>
 #include "sound.h"
@@ -19,10 +20,12 @@ int findPeaks(int d[]) {
 // into decibels, and display them as a barchart
 void displayWAVDATA(short s[]){
 	double rms[80]; // because of 16000 samples, 16000/80=200
+	
 	int db[80];				// therefore every 200 samples makes one RMS
 	int i, j;
 	short *ptr = s;		// we use a pointer, pointing to the beginning of array
-
+	
+	
 	for(i=0; i<80; i++){
 		double sum = 0;		// accumulate sum of squares
 		for(j=0; j<200; j++){
@@ -77,7 +80,7 @@ void displayWAVHDR(struct WAVHDR h){
 	setColors(WHITE, bg(MAGENTA));
 	printf("\033[1;61H");
 	printf("Duration = %.2f     \n", (float)h.Subchunk2Size/h.ByteRate);
-
+	
 #endif
 }
 void fillID(char *dst, const char *m){
@@ -109,26 +112,27 @@ void testTone(int c, int f, float d){
 	h.NumChannels=c;
 	h.SampleRate= 44100;
 	h.BitsPerSample=16;
-
+	
 	h.ByteRate = h.SampleRate* c * h.BitsPerSample/8;
 	h.BlockAlign = c*h.BitsPerSample/8;
-	h.Subchunk2Size = samples * h.BlockAlign;
+	h.Subchunk2Size = d*h.SampleRate * h.BlockAlign;
 	h.ChunkSize = h.Subchunk2Size +36;
+
 	// prepare sound data
-	FILE *fp = fopen("testTone.wav","w");
-	if(fp == NULL){
-		printf("we cannot open the file \n");
-		return;
-	}
-	fwrite(&h, sizeof(h), 1,fp);// write the header
-	for(int i=0; i<samples; i++){
+		FILE *fg = fopen("testTone.wav", "w");
+        if(fg == NULL) {
+                printf("we cannot open the file\n");
+                return;
+        }
+        fwrite(&h, sizeof(h), 1, fg);   // write the header
+        for(int i=0; i<d*h.SampleRate; i++) {
                 short data = 32767.0*sin(2*PI*i*f/44100);
-		fwrite(&data, sizeof(short),1,fp);
-        	if(c==2){
-			short dR = 32767.0*sin(2*PI*i*f/2/44100);
-			fwrite(&dR, sizeof(short), 1, fp);
-		}
-	}
-	fclose(fp);
-	printf("Test tone is generated \n");
+                fwrite(&data, sizeof(short), 1, fg);
+                if(c==2) {
+                        short dR = 32767.0*sin(2*PI*i*f/2/44100);
+                        fwrite(&dR, sizeof(short), 1, fg);
+                }
+        }
+        fclose(fg);
+        printf("test tone is generated\n");
 }
