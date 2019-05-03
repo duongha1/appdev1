@@ -13,14 +13,14 @@ Table of Content
 	
 -----------------------------
 
-1. Configuation Instructions
+# 1. Configuation Instructions
 
 The application is running on a Raspberry Pi 3 model B. This Pi should come with a USB sound card, 
 a network connection, a microphone.
 
 -----------------------------
 
-1.1. Configure USB sound card as default audio device
+# 1.1. Configure USB sound card as default audio device
 
 .Firstly, we need the USB sound card and apply it into Rasberry. 
 .To ensure your USB sound card is mounted, you can use “lsusb” command. 
@@ -43,7 +43,7 @@ a more sensitive sound detection, it is better to maximize the volume of “Mic�
 
 -----------------------------
 
-1.2 Install Libcurl library
+# 1.2 Install Libcurl library
 
 Here are instruction to install libcurl library:
 
@@ -55,13 +55,13 @@ identify that libcurl library is installed.
 
 -----------------------------
 
-2. Installation Instructions
+# 2. Installation Instructions
 .Type "make" command to make executable file in your installation directory.
 .Then, type "ls" command and you should see a file named "sound.out".
 
 -----------------------------
 
-3. Operating Instructions
+# 3. Operating Instructions
 
 *Showing frequency and peak counting on the bar chart:
 .Type "./sound.out" command to run sound.out file, and the terminal will display the bar chart.
@@ -71,7 +71,7 @@ identify that libcurl library is installed.
 
 -----------------------------
 
-4. File list(Manifest)
+# 4. File list(Manifest)
 
 The project contains following files: 
 
@@ -91,7 +91,7 @@ into 8-pieces of slow decibel(ISO standard).
 
 -----------------------------
 
-5. Copyleft
+# 5. Copyleft
 .Coppyleft 2019: The source code is done by Duong Ha.
 .Copyleft 2019: This project is cooperated with an instructor: Mr.Gao Chao from Vaasa University of 
 Applied Sciences.
@@ -100,7 +100,7 @@ Applied Sciences.
 
 -----------------------------
 
-6. Contract Information
+# 6. Contract Information
 
 Duong Minh Ha / Information Technology
 Vaasa University of Applied Sciences
@@ -108,7 +108,7 @@ Email: nhannguyen290520@gmail.com
 
 -----------------------------
 
-7. Credits and Acknowledgements
+# 7. Credits and Acknowledgements
 
 I would like to express my special thanks of gratitude to Mr. Gao Chao for great support my first project, 
 I have learned a lot about the format as well as concepts development for a project. This is a premise for 
