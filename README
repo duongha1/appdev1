@@ -86,7 +86,8 @@ RJ45 cable.
 	For more information, finding at: http://www.circuitbasics.com/useful-raspberry-pi-commands/
 .Use "make" command to compilling program
 .Use "./sound.out" command to run program
-.Using the microphone to sense the movement and the variation of the sound movement and find how many peaks the audio device reaches.
+.Using the microphone to sense the movement and the variation of the sound movement and find how many 
+peaks the audio device reaches.
 
 -----------------------------
 
@@ -96,11 +97,13 @@ The project contains following files:
 
 --README : this file (information abut other files)
 --makefile : the makefile of this project 
---sound.c : the module containing functions about sound processing including sensing sound through microphone and calculating for dB as well as finding number of peaks in  .wav file 
+--sound.c : the module containing functions about sound processing including sensing sound through 
+microphone and calculating for dB as well as finding number of peaks in .wav file 
 --sound.h : the header of sound.c 
 --screen.c : the module containing functions about screen control and movement and bar chart display.
 --screen.h : the header of screen.c 
---comm.c : the communication module using libcurl by sending data to calculate 1 second of sound samples into 8-pieces of slow decibel(ISO standard).
+--comm.c : the communication module using libcurl by sending data to calculate 1 second of sound samples 
+into 8-pieces of slow decibel(ISO standard).
 --comm.h : the header file of comm.c 
 --main.c : contains main() function 
 --curltest.c : data transfer from or to a server, using common Internet protocol.
@@ -110,7 +113,8 @@ The project contains following files:
 
 5. Copyleft
 .Coppyleft 2019: The source code is done by Duong Ha.
-.Copyleft 2019: This project is cooperated with an instructor: Mr.Gao Chao from Vaasa University of Applied Sciences.
+.Copyleft 2019: This project is cooperated with an instructor: Mr.Gao Chao from Vaasa University of 
+Applied Sciences.
 .I use Raspberry Pi 3 model B which is a device of Vaasa University of Applied Sciences.
 .All the source code files are free to use and distribute!
 
@@ -126,5 +130,6 @@ Email: nhannguyen290520@gmail.com
 
 7. Credits and Acknowledgements
 
-I would like to express my special thanks of gratitude to Mr. Gao Chao for great support my first project, I have learned a lot
-about the format as well as concepts development for a project. This is a premise for me to make other projects in the future.
+I would like to express my special thanks of gratitude to Mr. Gao Chao for great support my first project, 
+I have learned a lot about the format as well as concepts development for a project. This is a premise for 
+me to make other projects in the future.
