@@ -56,38 +56,18 @@ identify that libcurl library is installed.
 -----------------------------
 
 2. Installation Instructions
-.Insert the SD card - install Raspbian OS via website "https://www.raspberrypi.org/downloads/noobs/"
-.Download "Noobs" image and ZIP file
-.If this is the first time bootin, plug in your keyboard, mouse and monitor cable. Then, you disable 
-a display with RPi because it will be more convinient and you do not use it in most cases. Furthermore, 
-you also need to know its IP address when using RPi remotely. For more information about NOOBS setup, 
-finding at: https://www.raspberrypi.org/help/noobs-setup/2/
-.Disassemble keyboard, mouse and monitor cable and plug them back in your computer.
-.Insert USB sound card and microphone to the Raspberry Pi and connect RPi to a Internet domain by the 
-RJ45 cable. 
-.Connect to power supply by Micro USB to USB cable. 	
-.Using IP address sent by email to connect to the terminal.
+.Type "make" command to make executable file in your installation directory.
+.Then, type "ls" command and you should see a file named "sound.out".
 
 -----------------------------
 
 3. Operating Instructions
 
-.Open the PUTTY terminal and logging in your IP address.
-	login as: pi 
-	password: "enter your password"
-.Use "cd appdev1/ " command to access to "appdev" folder where all the source code files are put in.
-.Here are commands to get access to those file:
-	+"mkdir": Make a new folder
-	+ "ls -l": show the files of current folder in details 
-	+"cd..": Change to parent folder
-	+"cd $HOME": Change to the root folder of current user
-	+"rm": Delete a file or a number of files/folders
-	+"scp": Copy files from one host to another host
-	For more information, finding at: http://www.circuitbasics.com/useful-raspberry-pi-commands/
-.Use "make" command to compilling program
-.Use "./sound.out" command to run program
-.Using the microphone to sense the movement and the variation of the sound movement and find how many 
-peaks the audio device reaches.
+*Showing frequency and peak counting on the bar chart:
+.Type "./sound.out" command to run sound.out file, and the terminal will display the bar chart.
+.Make some noise on microphone and the bar chart will shows different sound level as your sound.
+.Try to make noise around microphone and see the difference on bar chart. 
+.To stop the program, type "Ctrl" + "C".
 
 -----------------------------
 
